@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Integrated Placement Cell</title>
+    <style>
+      :root {
+        --primary: #f39c4c;
+        --text-dark: #111;
+        --text-light: #fff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f5f5f5;
+        color: var(--text-dark);
+      }
+
+      header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 4px 8px rgba(189, 181, 181, 0.1);
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+
+      header img {
+        height: 150px;
+        transition: transform 0.3s ease;
+      }
+      header img+img{
+        height: 80px;
+      }
+      header img+img+img{
+        height: 100px;
+        margin-top: 1%;
+        margin-left: 2%;
+      }
+      header img:hover {
+        transform: scale(1.1);
+      }
+
+      .sub-head {
+        text-align: center;
+        margin-top: 20px;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      .main-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 30px;
+        gap: 30px;
+      }
+
+      .image-block img {
+        width: 250px;
+        height: auto;
+        animation: zoomIn 1.2s ease;
+      }
+
+      .content-box {
+        background: var(--primary);
+        border-radius: 25px;
+        padding: 30px;
+        width: 100%;
+        max-width: 600px;
+        animation: slideInUp 1s ease;
+      }
+
+      .content-box h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .dropdowns {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+        margin-left: 40%;
+      }
+
+      label {
+        font-weight: bold;
+        color: white;
+      }
+
+      select {
+        padding: 8px 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #aaa;
+      }
+
+      .marquee-container {
+        overflow: hidden;
+        background: #fffafa;
+        border: 2px solid #aaa;
+        border-radius: 12px;
+        /* margin: 20px 0; */
+        height: 60px;
+        /* display: flex;
+      align-items: center; */
+        padding:  10px;
+
+        /* border: 2px solid red; */
+      }
+
+      .marquee {
+        width: 600px;
+        /* border: 2px solid red; */
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .footer button {
+        background: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .footer button:hover {
+        background: white;
+        color: black;
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes zoomIn {
+        0% {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(150px);
+          transition: transform 10s;
+        }
+        100%{
+          transform: translateX(-100%);
+                    transition: transform 10s;
+
+        }
+      }
+
+      @media (max-width: 768px) {
+        .dropdowns {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .main-container {
+          padding: 15px;
+        }
+
+        .content-box {
+          padding: 20px;
+        }
+      }
+      p {
+        /* border: 2px solid red; */
+        /* height: 25px; */
+        /* width: 280%; */
+        overflow: hidden;
+        animation-name: marquee;
+        animation-duration: 80s;
+        animation-timing-function:linear;
+        animation-iteration-count: infinite;
+
+        width: max-content;
+        animation-delay: 0s;
+        font-size: 28px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+  <img id="q" src="{% static 'img/QSPIDERS.png' %}" alt="QSpiders Logo">
+  <img id="j" src="{% static 'img/JSPIDERS.png' %}" alt="JSpiders Logo">
+  <img id="p" src="{% static 'img/PYSPIDERS.png' %}" alt="PySpiders Logo">
+</header>
+
+    <div class="sub-head">
+      <h1>Only Corporate Branch in Hyderabad</h1>
+      <h2>with</h2>
+    </div>
+
+    <section class="main-container">
+      <div class="image-block">
+        <img src="{% static 'img/ipc.png' %}" alt="Integrated Placement Cell">
+      </div>
+
+      <div class="content-box">
+        <h1>INTEGRATED PLACEMENT CELL</h1>
+
+        <div class="dropdowns">
+          <div>
+            <label for="speed">Select Speed:</label><br />
+            <select id="speed" >
+              <option value="200">Fast</option>
+              <option value="150" selected>Medium</option>
+              <option value="100">Slow</option>
+            </select>
+          </div>
+
+          <!-- <div>
+            <label for="height">Select Text Height:</label><br />
+            <select id="height">
+              <option value="2">Small</option>
+              <option value="2.5" selected>Medium</option>
+              <option value="3">Large</option>
+            </select>
+          </div> -->
+        </div>
+
+        <div class="marquee-container">
+          <p>
+            {{passage}}
+          </p>
+        </div>
+
+        <div class="footer">
+          <button>
+            <a href="{% url 'home' %}" style="text-decoration: none; color: inherit;">Change content</a>
+          </button>
+        </div>
+      </div>
+
+      <div class="image-block">
+        <img src="{% static 'img/ipc.png' %}" alt="Integrated Placement Cell">
+      </div>
+    </section>
+
+    <script>
+      let marquee = document.querySelector("marquee");
+      let speed = document.getElementById("speed");
+      let height = document.getElementById("height");
+      let p=document.querySelector("p")
+      console.log(speed.value);
+      console.log(marquee);
+        // function upadateChange(){
+        //       if(height.value==2){
+        //     p.style.fontSize="12px"
+        //     console.log(p);
+            
+        // }
+        // else if(height.value==2.5){
+        //     p.style.fontSize="16px"
+        // }
+        // else if(height.value==3){
+        //     p.style.fontSize="20px"
+        // }
+        // }
+      function updateMarquee() {
+        // console.log(e);
+        console.log(marquee);
+
+        if (speed.value == 200) {
+          // console.log(e.target.value);
+          console.log(speed.value);
+          p.style.animationDuration=`${40}s`
+            
+        }
+        else if (speed.value == 100) {
+          // console.log(e.target.value);
+          console.log(speed.value);
+        //   p.style.animationDuration="20s"
+                  p.style.animationDuration=`${80}s`
+
+            
+        }
+        else if (speed.value == 150) {
+          // console.log(e.target.value);
+          console.log(speed.value);
+        //   p.style.animationDuration="20s"
+                  p.style.animationDuration=`${60}s`
+
+            
+        }
+      
+
+
+        
+      }
+
+      document.getElementById("speed").addEventListener("change", updateMarquee);
+        // document.getElementById("height").addEventListener("change",upadateChange)
+    </script>
+  </body>
+</html>
