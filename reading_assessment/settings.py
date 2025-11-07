@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'reading_assessment.reading_assessment.middleware.password_protect.basic_auth_middleware',
     'reading_assessment.middleware.password_protect.basic_auth_middleware',
    'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', 
