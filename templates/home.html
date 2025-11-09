@@ -360,7 +360,7 @@
         var height = document.getElementById('height').value;
         var marqueeSpan = document.querySelector('.marquee span');
        
-        const speedFactor = parseInt(speed, 10);
+        const speedFactor = parseInt(speed, 20);
         const duration = (textWidth + containerWidth) / speedFactor;
         console.log(duration)
 
@@ -381,7 +381,7 @@
         const textWidth = text.offsetWidth;
         const containerWidth = marqueeSpan.offsetWidth;
 
-        const speedFactor = parseInt(speed, 10);
+        const speedFactor = parseInt(speed, 20);
         const duration = (textWidth + containerWidth) / speedFactor;
 
         marqueeSpan.style.animationDuration = `${duration}s`;
