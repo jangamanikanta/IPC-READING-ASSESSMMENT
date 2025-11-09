@@ -137,7 +137,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 import dj_database_url
-DATABASES['default'] = dj_database_url.config(default='sqlite:///db.sqlite3')
+import os
+
+DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+}
+
 import os
 
 STATIC_URL = '/static/'
