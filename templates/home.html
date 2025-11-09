@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
@@ -69,21 +68,18 @@
       align-items: flex-start;
       padding: 30px;
       gap: 30px;
-      /* border: 4px solid green; */
     }
 
     .image-block img {
       width: 250px;
       height: auto;
       animation: zoomIn 1.2s ease;
-      /* border: 4px solid red; */
     }
 
     .content-box {
       background: var(--primary);
       border-radius: 25px;
       padding: 30px;
-      /* width: 100%; */
       max-width: 900px;
       animation: slideInUp 1s ease;
     }
@@ -120,18 +116,8 @@
       background: #fffafa;
       border: 2px solid #aaa;
       border-radius: 12px;
-      /* margin: 20px 0; */
       height: 100px;
-      /* display: flex;
-        align-items: center; */
       padding: 10px;
-
-      /* border: 2px solid red; */
-    }
-
-    .marquee {
-      width: 600px;
-      /* border: 2px solid red; */
     }
 
     .footer {
@@ -194,14 +180,22 @@
 
     @keyframes marquee {
       0% {
-        transform: translateX(150px);
-        transition: transform 20s;
+        transform: translateX(100%);
       }
 
       100% {
         transform: translateX(-100%);
-        transition: transform 20s;
       }
+    }
+
+    p {
+      animation-name: marquee;
+      animation-duration: 120s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      width: max-content;
+      font-size: 50px;
+      white-space: nowrap;
     }
 
     @media (max-width: 768px) {
@@ -217,20 +211,6 @@
       .content-box {
         padding: 20px;
       }
-    }
-
-    p {
-      /* border: 2px solid red;
-        height: 25px;
-        width: 280%; */
-      /* overflow: hidden; */
-      animation-name: marquee;
-      animation-duration: 200s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      width: max-content;
-      animation-delay: 0s;
-      font-size: 50px;
     }
   </style>
 </head>
@@ -257,14 +237,12 @@
 
       <div class="dropdowns">
         <div>
-          <form action="">
           <label for="speed">Select Speed:</label><br />
           <select id="speed">
             <option value="200">Fast</option>
             <option value="150">Medium</option>
             <option value="100" selected>Slow</option>
           </select>
-          </form>
         </div>
       </div>
 
@@ -273,8 +251,6 @@
           {{passage}}
         </p>
       </div>
-
-
 
       <div class="footer">
         <button>
@@ -288,111 +264,29 @@
     </div>
   </section>
 
-  <!-- <script>
-    let marquee = document.querySelector("marquee");
-    let speed = document.getElementById("speed");
-    let height = document.getElementById("height");
-    let p = document.querySelector("p");
-    console.log(passage.innerText.length);
-    console.log(speed.value);
-    console.log(marquee);
-    function updateMarquee() {
+  <!-- ✅ Fixed JavaScript -->
+  <script>
+    const passage = document.getElementById("passage");
+    const speedSelect = document.getElementById("speed");
+    const container = document.querySelector(".marquee-container");
 
-      console.log(marquee);
-      if (p.innerText.length <= 2000) {
-        let x = 2000 - p.innerText.length
-        for (let i = 0; i <= x; i++) {
-          p.innerText += " "
-        }
-        if (speed.value == 200) {
-          console.log(speed.value);
-          p.style.animationDuration = `${65}s`
+    function updateMarqueeSpeed() {
+      const speed = parseInt(speedSelect.value);
+      const textWidth = passage.scrollWidth;
+      const containerWidth = container.offsetWidth;
 
-        }
-        else if (speed.value == 150) {
-          console.log(speed.value);
-          p.style.animationDuration = `${75}s`
-        }
-        else if (speed.value == 100) {
+      // Calculate duration dynamically based on text size and selected speed
+      const duration = (textWidth + containerWidth) / speed;
 
-          console.log(speed.value);
-          p.style.animationDuration = `${80}s`
-        }
-
-      }
-
+      // Restart animation with new speed
+      passage.style.animation = "none";
+      void passage.offsetWidth; // force reflow
+      passage.style.animation = `marquee ${duration}s linear infinite`;
     }
 
-    document.getElementById("speed").addEventListener("change", updateMarquee);
-  </script> -->
+    speedSelect.addEventListener("change", updateMarqueeSpeed);
+    window.onload = updateMarqueeSpeed;
+  </script>
 
-  <script>
-    var marqueeSpan = document.querySelector('.marquee span');
-    var text = document.getElementById('span1')
-    var textWidth = text.offsetWidth;
-    var containerWidth = marqueeSpan.offsetWidth;
-    
-    document.getElementById('speed').addEventListener('change', function() {
-        var speed = this.value;
-        var marqueeSpan = document.querySelector('.marquee span');
-        const speedFactor = parseInt(speed, 10);
-        const duration = (textWidth + containerWidth) / speedFactor;
-        marqueeSpan.style.animation = "none"; // Remove animation
-        // Trigger reflow to apply the change
-        void marqueeSpan.offsetWidth;
-        // Reapply the animation with updated duration
-        marqueeSpan.style.animation = `marquee ${duration}s linear infinite`;
-    });
-    
-
-    document.getElementById('height').addEventListener('change', function() {
-        var height = this.value;
-        var marqueeSpan = document.querySelector('.marquee span');
-
-        marqueeSpan.style.lineHeight = height;
-        marqueeSpan.style.fontSize = height + 'em';
-    });
-
-    // Initialize the marquee speed and height based on the default selections
- 
-    window.onload = function() {
-        var speed = document.getElementById('speed').value;
-        var height = document.getElementById('height').value;
-        var marqueeSpan = document.querySelector('.marquee span');
-       
-        const speedFactor = parseInt(speed, 20);
-        const duration = (textWidth + containerWidth) / speedFactor;
-        console.log(duration)
-
-        marqueeSpan.style.animationDuration = `${duration}s`;
-        marqueeSpan.style.lineHeight = height;
-        marqueeSpan.style.fontSize = height + 'em';
-        console.log(text)
-    };
-
-
-    window.reload = function() {
-        var speed = document.getElementById('speed').value;
-        var height = document.getElementById('height').value;
-        var marqueeSpan = document.querySelector('.marquee span');
-        const text = document.getElementById('span1')
-        
-
-        const textWidth = text.offsetWidth;
-        const containerWidth = marqueeSpan.offsetWidth;
-
-        const speedFactor = parseInt(speed, 20);
-        const duration = (textWidth + containerWidth) / speedFactor;
-
-        marqueeSpan.style.animationDuration = `${duration}s`;
-        marqueeSpan.style.lineHeight = height;
-        marqueeSpan.style.fontSize = height + 'em';
-        console.log(text)
-    };
-
-
-</script>
 </body>
-
 </html>
-
