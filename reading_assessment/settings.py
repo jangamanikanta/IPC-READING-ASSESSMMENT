@@ -141,7 +141,7 @@ import os
 
 DATABASES = {
     'default': dj_database_url.parse(
-        "postgres://exam_db_c12t_user:YOUR_REAL_PASSWORD@dpg-d4rrjkali9vc73dfm3bg-a:5432/exam_db_c12t",
+       "postgres://exam_db_c12t_user:dVQHb7ZPFiIxdk3Di7zgNZb43ZmDw60L@dpg-d4rrjkali9vc73dfm3bg-a:5432/exam_db_c12t",
         conn_max_age=600,
         ssl_require=True
     )
