@@ -140,8 +140,13 @@ import dj_database_url
 import os
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.parse(
+        "postgres://exam_db_c12t_user:YOUR_PASSWORD@dpg-d4rrjkali9vc73dfm3bg-a:5432/exam_db_c12t",
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
+
 
 import os
 
